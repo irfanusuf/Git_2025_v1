@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/P1WebAppRazor.props" />
+</Project>
