@@ -2,10 +2,19 @@
 
 // ioc container 
 
+using Microsoft.EntityFrameworkCore;
+using P1WebAppRazor.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+// dependency injection 
+builder.Services.AddDbContext<SqlDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("cloud")));
+
+
 
 
 var app = builder.Build();
@@ -36,6 +45,6 @@ app.MapStaticAssets();
 app.MapRazorPages()
  .WithStaticAssets();
 
- 
+
 
 app.Run();
