@@ -53,6 +53,15 @@
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Check me out</label>
         </div>
+
+
+        <p class="text-danger"> 
+        @ViewData["errorMessage"]
+        </p>
+
+           <p class="text-success"> 
+        @ViewData["successMessage"]
+        </p>
         <button type="submit" class="btn btn-primary">Submit</button>
 
     </form>

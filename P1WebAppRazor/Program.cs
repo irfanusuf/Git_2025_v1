@@ -15,10 +15,7 @@ builder.Services.AddDbContext<SqlDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("cloud")));
 
 
-
-
 var app = builder.Build();
-
 
 
 
