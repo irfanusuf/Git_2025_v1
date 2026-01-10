@@ -4,6 +4,8 @@
 
 using Microsoft.EntityFrameworkCore;
 using P1WebAppRazor.Data;
+using P1WebAppRazor.Interfaces;
+using P1WebAppRazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,9 @@ builder.Services.AddRazorPages();
 // dependency injection 
 builder.Services.AddDbContext<SqlDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("cloud")));
+
+builder.Services.AddSingleton<ITokenService , TokenService>();
+
 
 
 var app = builder.Build();

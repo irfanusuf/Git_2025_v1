@@ -24,19 +24,20 @@ namespace P1WebAppRazor.Pages
 
         public async Task OnPost(User user)
         {
-            // actual work is save the above data in db
-            // user ko create 
-
-            if(string.IsNullOrEmpty(user.Password )  || user.Password.Length < 8 )
+            // password validation  and length
+            if (string.IsNullOrEmpty(user.Password) || user.Password.Length < 8)
             {
-                
-                 ViewData["errorMessage"] = "All the details are required!";
-                 return;
-
-            } 
-
+                ViewData["errorMessage"] = "Password must be at least 8 Characters !";
+                return;
+            }
+            // email and username validation 
+            if (string.IsNullOrEmpty(user.Username) || string.IsNullOrEmpty(user.Email))
+            {
+                ViewData["errorMessage"] = "Email and username both are required !";
+                return;
+            }
+            // check existing user 
             var existingUser = await dbcontext.Users.FirstOrDefaultAsync((u) => u.Email == user.Email);
-
             if (existingUser != null)
             {
                 ViewData["errorMessage"] = "user with This email already exists";
@@ -46,27 +47,10 @@ namespace P1WebAppRazor.Pages
                 var encryptedPass = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
                 user.Password = encryptedPass;
-
-                var RegisterNewuser = await dbcontext.Users.AddAsync(user);
+                await dbcontext.Users.AddAsync(user);
                 await dbcontext.SaveChangesAsync();
-
-                // mail send 
-
-                if (RegisterNewuser != null)
-                {
-
-                    ViewData["successMessage"] = "User Registerd Succesfully";
-
-                }
-
+                ViewData["successMessage"] = "User Registerd Succesfully";
             }
-
-
-            // redirect the user to the profile page 
-
-
-            // return RedirectToAction("/profile");
-
         }
     }
 }
