@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using P1WebAppRazor.Data;
+using P1WebAppRazor.Interfaces;
 using P1WebAppRazor.Models;
 using P1WebAppRazor.Services;
 
@@ -14,11 +15,14 @@ namespace P1WebAppRazor.Pages
 
         private readonly SqlDbContext dbcontext;
 
-        public LoginModel(SqlDbContext dbContext)
+        private readonly ITokenService tokenService;
+
+        public LoginModel(SqlDbContext dbContext, ITokenService tokenService)
         {
             this.dbcontext = dbContext;
+            this.tokenService = tokenService;
 
-    
+
         }
 
         public void OnGet()
@@ -30,18 +34,24 @@ namespace P1WebAppRazor.Pages
             try
             {
                 var existingUser = await dbcontext.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
-                if(existingUser == null)
+                if (existingUser == null)
                 {
                     ViewData["errorMessage"] = "User with this email doesnt exist ! ";
                     return;
                 }
 
-                bool passVerify = BCrypt.Net.BCrypt.Verify(user.Password , existingUser.Password);
+                bool passVerify = BCrypt.Net.BCrypt.Verify(user.Password, existingUser.Password);
 
                 if (passVerify)
                 {
 
                     // jwt token generate 
+
+                    var token = tokenService.CreateToken(existingUser.UserId, existingUser.Email, existingUser.Username, 7);
+
+                    Console.WriteLine(token);
+
+                    // cookie send kernay haiuu // kisko browser kpo 
 
 
 
@@ -51,7 +61,7 @@ namespace P1WebAppRazor.Pages
                 }
                 else
                 {
-                     ViewData["errorMessage"] = "Password Incorrect ! ";
+                    ViewData["errorMessage"] = "Password Incorrect ! ";
                     return;
                 }
             }
