@@ -1,4 +1,3 @@
-/home/irfanyousuf/coding/Git_2025_v1/P1WebAppRazor/bin/Debug/net9.0/appsettings.Development.json
 /home/irfanyousuf/coding/Git_2025_v1/P1WebAppRazor/bin/Debug/net9.0/appsettings.json
 /home/irfanyousuf/coding/Git_2025_v1/P1WebAppRazor/bin/Debug/net9.0/P1WebAppRazor.staticwebassets.runtime.json
 /home/irfanyousuf/coding/Git_2025_v1/P1WebAppRazor/bin/Debug/net9.0/P1WebAppRazor.staticwebassets.endpoints.json

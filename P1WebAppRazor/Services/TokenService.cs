@@ -22,9 +22,9 @@ public class TokenService : ITokenService
         //   secret Key
         var key = Encoding.ASCII.GetBytes(secretKey); // ascii conversion 
 
-        var handler = new JwtSecurityTokenHandler();
+        var handler = new JwtSecurityTokenHandler();   // base class for creating token 
 
-
+      
         var payload = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(
