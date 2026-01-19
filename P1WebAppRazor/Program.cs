@@ -1,12 +1,14 @@
 
 
-// ioc container 
+
 
 using Microsoft.EntityFrameworkCore;
 using P1WebAppRazor.Data;
 using P1WebAppRazor.Interfaces;
 using P1WebAppRazor.Services;
 
+
+// ioc container 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,6 +19,7 @@ builder.Services.AddDbContext<SqlDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("cloud")));
 
 builder.Services.AddSingleton<ITokenService , TokenService>();
+builder.Services.AddSingleton<IMailService , MailService>();
 
 
 
