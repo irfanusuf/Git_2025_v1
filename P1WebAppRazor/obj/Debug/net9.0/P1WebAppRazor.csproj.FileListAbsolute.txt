@@ -16,7 +16,6 @@
 /home/irfanyousuf/coding/Git_2025_v1/P1WebAppRazor/obj/Debug/net9.0/scopedcss/Pages/Shared/_Layout.cshtml.rz.scp.css
 /home/irfanyousuf/coding/Git_2025_v1/P1WebAppRazor/obj/Debug/net9.0/scopedcss/bundle/P1WebAppRazor.styles.css
 /home/irfanyousuf/coding/Git_2025_v1/P1WebAppRazor/obj/Debug/net9.0/scopedcss/projectbundle/P1WebAppRazor.bundle.scp.css
-/home/irfanyousuf/coding/Git_2025_v1/P1WebAppRazor/obj/Debug/net9.0/compressed/8kuik8175p-lugek5hnai.gz
 /home/irfanyousuf/coding/Git_2025_v1/P1WebAppRazor/obj/Debug/net9.0/compressed/jbtlbnz6eg-61n19gt1b8.gz
 /home/irfanyousuf/coding/Git_2025_v1/P1WebAppRazor/obj/Debug/net9.0/compressed/5rx5yspt7z-fr7q2aak1r.gz
 /home/irfanyousuf/coding/Git_2025_v1/P1WebAppRazor/obj/Debug/net9.0/compressed/g843mkj08c-bqjiyaj88i.gz
@@ -228,3 +227,4 @@
 /home/irfanyousuf/coding/Git_2025_v1/P1WebAppRazor/obj/Debug/net9.0/P1WebAppRazor.csproj.AssemblyReference.cache
 /home/irfanyousuf/coding/Git_2025_v1/P1WebAppRazor/obj/Debug/net9.0/P1WebApp.C26852C7.Up2Date
 /home/irfanyousuf/coding/Git_2025_v1/P1WebAppRazor/bin/Debug/net9.0/BCrypt.Net-Next.dll
+/home/irfanyousuf/coding/Git_2025_v1/P1WebAppRazor/obj/Debug/net9.0/compressed/8kuik8175p-8qec8j9y7k.gz

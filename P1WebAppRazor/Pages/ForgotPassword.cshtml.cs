@@ -16,7 +16,7 @@ namespace P1WebAppRazor.Pages
         public readonly IMailService mailService;
 
 
-        public ForgotPasswordModel( SqlDbContext dbContext , IMailService mailService)
+        public ForgotPasswordModel(SqlDbContext dbContext, IMailService mailService)
         {
             this.dbContext = dbContext;
             this.mailService = mailService;
@@ -30,26 +30,31 @@ namespace P1WebAppRazor.Pages
         {
             // logic for sending otp to the mail
             // user ko find kery gey db se 
-          var user =   await dbContext.Users.FirstOrDefaultAsync(u => u.Email == req.Email);
+            var user = await dbContext.Users.FirstOrDefaultAsync(u => u.Email == req.Email);
 
-          if(user == null)
+            if (user == null)
             {
-                ViewData["errorMessage"]  = "User With this Email Doesnot Exist ";
+                ViewData["errorMessage"] = "User With this Email Doesnot Exist ";
             }
             else
             {
                 var otp = new Random(57239847);  // security threat // random class can be predicted 
 
                 // otp ko  db save  kerna padega 
-                
-               await mailService.SendMail(req.Email , "contact@algoacademy.in" , "OTP verification" , $"Thank you for reaching us your Otp is {otp} , This will valid for 5 minutes");
-            };
 
+                await mailService.SendMail(
+                 req.Email,
+                "contact@algoacademy.in",
+                "OTP verification",
+                $"Thank you for reaching us your Otp is {otp} , This will valid for 5 minutes");
 
-            // service
-         
+                TempData["ResetEmail"] = req.Email;
+                TempData["successMessage"] = "Opt is sent to your registered Email";
+                Response.Redirect(Url.Page("/ResetPassword", new { email = req.Email }));
+                return;
+            }
+            ;
 
         }
-
     }
 }
