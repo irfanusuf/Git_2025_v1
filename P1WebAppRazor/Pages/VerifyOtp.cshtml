@@ -1,0 +1,54 @@
+﻿@page
+@model P1WebAppRazor.Pages.VerifyOtpModel
+@{
+    ViewData["Title"] = "Verify Otp" ;
+}
+
+
+    
+<div class="register_form">
+
+     <h3> Verify Otp and update Your Password  </h3>
+
+    <form method="post">
+
+
+          <div class="mb-3">
+            <label class="form-label">OTP</label>
+            <input type="text" class="form-control"  name="OTP" required >
+            <div  class="form-text">Otp is valid for only 5 minutes</div>
+        </div>
+
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" aria-describedby="emailHelp" name="Email" required >
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="Password" required>
+        </div>
+
+
+           <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="CPassword" required>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Update</button>
+
+    </form>
+
+
+
+
+
+</div>
+
+
+
+
+

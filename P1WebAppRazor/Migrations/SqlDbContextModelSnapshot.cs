@@ -54,7 +54,12 @@ namespace P1WebAppRazor.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("BlogId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Blogs");
                 });
@@ -69,6 +74,9 @@ namespace P1WebAppRazor.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Otp")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -80,6 +88,18 @@ namespace P1WebAppRazor.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("P1WebAppRazor.Models.Blog", b =>
+                {
+                    b.HasOne("P1WebAppRazor.Models.User", null)
+                        .WithMany("Blogs")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("P1WebAppRazor.Models.User", b =>
+                {
+                    b.Navigation("Blogs");
                 });
 #pragma warning restore 612, 618
         }

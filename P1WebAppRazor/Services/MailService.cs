@@ -16,10 +16,10 @@ public class MailService : IMailService
     public MailService(IConfiguration configuration)
     {
 
-        _smtpServer = "mail542.mailasp.net ";
-        _smtpPort = 465;
-        _smtpUser = configuration["Smtp : SmtpUser"] ?? throw new ArgumentNullException("smtp user is not configured !");
-        _smtpPass = configuration["Smtp : SmtpPass"] ?? throw new ArgumentNullException("smtp password is not configured !");
+        _smtpServer = "mail542.mailasp.net";
+        _smtpPort = 587;
+        _smtpUser = configuration["Smtp:SmtpUser"] ?? throw new ArgumentNullException("smtp user is not configured !");
+        _smtpPass = configuration["Smtp:SmtpPass"] ?? throw new ArgumentNullException("smtp password is not configured !");
 
     }
 
@@ -41,13 +41,13 @@ public class MailService : IMailService
 
             };
 
+        
             mailMessage.To.Add(address);
             await client.SendMailAsync(mailMessage);
         }
         catch (System.Exception ex)
         {
-            Console.WriteLine(ex.Message);
-            throw;
+            throw new InvalidOperationException($"Failed to send email: {ex.Message}", ex);
         }
     }
 }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("P1WebAppRazor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+30436bbae76c3eaa19165920a16258e8356cb158")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2ce8a015d9aff8014b666ad5518baec802979160")]
 [assembly: System.Reflection.AssemblyProductAttribute("P1WebAppRazor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("P1WebAppRazor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

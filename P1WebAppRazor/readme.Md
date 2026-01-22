@@ -26,3 +26,7 @@
 
     dotnet ef migrations add "message"
     dotnet ef database update
+
+
+         // Alternative more secure OTP generation:
+        // var otp = Convert.ToBase64String(Guid.NewGuid().ToByteArray()).Substring(0, 6);

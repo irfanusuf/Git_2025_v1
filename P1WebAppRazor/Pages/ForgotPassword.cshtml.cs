@@ -26,7 +26,7 @@ namespace P1WebAppRazor.Pages
         {
         }
 
-        public async Task OnPost(ForgotPass req)
+        public async Task <IActionResult> OnPost(ForgotPass req)
         {
             // logic for sending otp to the mail
             // user ko find kery gey db se 
@@ -35,26 +35,40 @@ namespace P1WebAppRazor.Pages
             if (user == null)
             {
                 ViewData["errorMessage"] = "User With this Email Doesnot Exist ";
+                return Page();
             }
             else
             {
-                var otp = new Random(57239847);  // security threat // random class can be predicted 
+                // Generate a better OTP (using Guid or other secure method)
+                var otp = new Random().Next(100000, 999999).ToString(); // 6-digit OTP
 
-                // otp ko  db save  kerna padega 
+                // update otp in the context
+                user.Otp = otp;
+
+                // otp ko db save kerna padega 
+                await dbContext.SaveChangesAsync();
+
+
+
+                Console.WriteLine(otp);
+                   
 
                 await mailService.SendMail(
-                 req.Email,
-                "contact@algoacademy.in",
-                "OTP verification",
-                $"Thank you for reaching us your Otp is {otp} , This will valid for 5 minutes");
+                    req.Email,
+                    "contact@algoacademy.in",
+                    "OTP verification",
+                    $"Thank you for reaching us your Otp is {otp}, This will be valid for 5 minutes");
+
+                
 
                 TempData["ResetEmail"] = req.Email;
-                TempData["successMessage"] = "Opt is sent to your registered Email";
-                Response.Redirect(Url.Page("/ResetPassword", new { email = req.Email }));
-                return;
-            }
-            ;
+                TempData["successMessage"] = "OTP is sent to your registered Email";
 
+                // Redirect to VerifyOtp page
+                return RedirectToPage("/VerifyOtp"); 
+            }
         }
+
+
     }
 }
