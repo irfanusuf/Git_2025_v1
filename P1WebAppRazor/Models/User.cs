@@ -11,6 +11,8 @@ public class User
 
     public string? Otp {get;set;}
 
+    public DateTime? OtpExpiry {get ;set;} 
+
     public ICollection<Blog> Blogs {get ;set;} = [];
 
 }

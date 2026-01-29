@@ -44,13 +44,11 @@ namespace P1WebAppRazor.Pages
 
                 // update otp in the context
                 user.Otp = otp;
+                user.OtpExpiry = DateTime.UtcNow.AddMinutes(5);
 
                 // otp ko db save kerna padega 
                 await dbContext.SaveChangesAsync();
 
-
-
-                Console.WriteLine(otp);
                    
 
                 await mailService.SendMail(

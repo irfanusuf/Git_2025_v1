@@ -29,23 +29,23 @@ namespace P1WebAppRazor.Pages
         {
         }
 
-        public async Task OnPost(User user)
+        public async Task<IActionResult> OnPost(User user)
         {
             try
             {
 
                 if (string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Password))
                 {
-                    ViewData["errorMessage"] = "Email and password both are required  ! ";
-                    return;
+                    TempData["errorMessage"] = "Email and password both are required  ! ";
+                    return Page();
                 }
                 // sql queries in LINQ
                 var existingUser = await dbcontext.Users.FirstOrDefaultAsync(u => u.Email == user.Email);   //O(1)    // O(n)
 
                 if (existingUser == null)
                 {
-                    ViewData["errorMessage"] = "User with this email doesnt exist ! ";
-                    return;
+                    TempData["errorMessage"] = "User with this email doesnt exist ! ";
+                    return Page();
                 }
 
                 bool passVerify = BCrypt.Net.BCrypt.Verify(user.Password, existingUser.Password);
@@ -57,31 +57,31 @@ namespace P1WebAppRazor.Pages
                     var token = tokenService.CreateToken(existingUser.UserId, existingUser.Email, existingUser.Username, 7);
 
                     // cookie send kernay haiuu // kisko browser kpo 
-                    HttpContext.Response.Cookies.Append("auth_token" , token , new CookieOptions
+                    HttpContext.Response.Cookies.Append("auth_token", token, new CookieOptions
                     {
                         Expires = DateTime.UtcNow.AddDays(7),
                         SameSite = SameSiteMode.Strict,
                         HttpOnly = true,
                         Secure = false
-                        
+
                     });
 
                     // success mesaage 
                     TempData["successMessage"] = "Logged in SuccesFully ! ";
 
+                    return RedirectToPage("/Profile");
 
-                    Redirect("Profile");
-              
                 }
                 else
                 {
-                    ViewData["errorMessage"] = "Password Incorrect ! ";
-                    return;
+                    TempData["errorMessage"] = "Password Incorrect ! ";
+                    return Page();
                 }
             }
             catch (Exception ex)
             {
-                ViewData["errorMessage"] = ex.Message;
+                TempData["errorMessage"] = ex.Message;
+                return Page();
                 throw;
             }
         }
