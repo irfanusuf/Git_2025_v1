@@ -24,7 +24,6 @@ namespace P1WebAppRazor.Pages
         public void OnGet()
         {
         }
-
         public async Task<IActionResult> OnPost(VerifyOtp req)
         {
             try
@@ -35,7 +34,6 @@ namespace P1WebAppRazor.Pages
                     TempData["ResetEmail"] = req.Email;
                     return Page();
                 }
-
                 var user = await dbContext.Users.FirstOrDefaultAsync(u => u.Email == req.Email);
                 if (user != null)
                 {
